@@ -1,0 +1,33 @@
+### GET ALL ITEMS
+GET http://localhost:3001/books HTTP/1.1
+Content-Type: application/json
+
+### ADD AN ITEM
+POST http://localhost:3001/books HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "Harry Potter 1"
+}
+
+### UPDATE ALL PROPERTIES OF AN OBJECT
+PUT http://localhost:3001/books/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "Harry Potter 1",
+    "pages": 5000
+}
+
+### UPDATE ONE OR TWO PROPERTIES OF AN OBJECT
+PATCH http://localhost:3001/books/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "Harry Potter 2"
+}
+
+### DELETE
+DELETE http://localhost:3001/books/1 HTTP/1.1
+Content-Type: application/json
+
