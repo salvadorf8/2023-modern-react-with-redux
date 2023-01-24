@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 import BookCreate from './components/BookCreate';
 import BookList from './components/BookList';
@@ -6,31 +7,52 @@ import BookList from './components/BookList';
 function App() {
     const [books, setBooks] = useState([]);
 
-    const deleteBookById = (id) => {
-        const updatedBooks = books.filter((book) => {
-            return book.id !== id;
+    const deleteBookById = async (id) => {
+        const response = await axios.delete(`http://localhost:3001/books/${id}`);
+
+        if (response.status === 200 && response.statusText === 'OK') {
+            const updatedBooks = books.filter((book) => {
+                return book.id !== id;
+            });
+
+            setBooks(updatedBooks);
+        }
+    };
+
+    const editBookById = async (id, newTitle) => {
+        const response = await axios.put(`http://localhost:3001/books/${id}`, {
+            title: newTitle
         });
 
-        setBooks(updatedBooks);
+        if (response.status === 200 && response.statusText === 'OK') {
+            const updatedBooks = books.map((book) => {
+                if (book.id === id) {
+                    return { ...book, ...response.data };
+                }
+
+                return book;
+            });
+
+            setBooks(updatedBooks);
+        }
     };
 
-    const editBookById = (id, newTitle) => {
-        const updatedBooks = books.map((book) => {
-            if (book.id === id) {
-                return { ...book, title: newTitle };
-            }
-
-            return book;
+    const createBook = async (title) => {
+        const response = await axios.post('http://localhost:3001/books', {
+            title
         });
 
-        setBooks(updatedBooks);
+        setBooks([...books, response.data]);
     };
 
-    const createBook = (title) => {
-        const id = Math.round(Math.random() * 9999);
+    useEffect(() => {
+        const fetchBooks = async () => {
+            const response = await axios.get('http://localhost:3001/books');
+            setBooks(response.data);
+        };
 
-        setBooks([...books, { id: id, title }]);
-    };
+        fetchBooks();
+    }, []);
 
     return (
         <div className='app'>
