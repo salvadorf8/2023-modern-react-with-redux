@@ -3,22 +3,21 @@ import Button from './Button';
 function App() {
     return (
         <div className='App'>
+            <h1 className='text-3xl font-bold underline '>Hello world!</h1>
             <div>
-                <Button success primary>
-                    Click!
-                </Button>
+                <Button success>Click !</Button>
             </div>
             <div>
-                <Button></Button>
+                <Button>Submit !</Button>
             </div>
             <div>
-                <Button></Button>
+                <Button>Delete !</Button>
             </div>
             <div>
-                <Button></Button>
+                <Button>Add to cart !</Button>
             </div>
             <div>
-                <Button></Button>
+                <Button>Enter !</Button>
             </div>
         </div>
     );
