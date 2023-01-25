@@ -7,9 +7,10 @@ import BookList from './components/BookList';
 function App() {
     const { fetchBooks } = useContext(BookContext);
 
+    // made use of useCallback hook to fix ESLint warning - then added fetchBooks in Array
     useEffect(() => {
         fetchBooks();
-    }, []);
+    }, [fetchBooks]);
 
     return (
         <div className='app'>

@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useCallback, useState } from 'react';
 import axios from 'axios';
 
 const BooksContext = createContext();
@@ -6,10 +6,14 @@ const BooksContext = createContext();
 export const BooksProvider = ({ children }) => {
     const [books, setBooks] = useState([]);
 
-    const fetchBooks = async () => {
+    /**
+     * made use of useCallback to fix ESLint warning
+     * basic example: const stableFetchBooks = useCallback(fetchBooks, []);
+     */
+    const fetchBooks = useCallback(async () => {
         const response = await axios.get('http://localhost:3001/books');
         setBooks(response.data);
-    };
+    }, []);
 
     const deleteBookById = async (id) => {
         const response = await axios.delete(`http://localhost:3001/books/${id}`);
