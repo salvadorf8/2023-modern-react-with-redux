@@ -1,9 +1,32 @@
-import { useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { GoChevronDown } from 'react-icons/go';
 import Panel from './Panel';
 
 const Dropdown = ({ options, onChange, value }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const divEl = useRef();
+
+    useEffect(() => {
+        const handler = (event) => {
+            // below if statement works, but thought I practice using the divEl?.current?.containes
+            // if (!divEl.current) {
+            //     return;
+            // }
+
+            // console.log(event.target);
+            // console.log(divEl.current);
+
+            if (!divEl?.current?.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener('click', handler, true);
+
+        return () => {
+            document.removeEventListener('click', handler);
+        };
+    }, []);
 
     const handleOnClick = () => {
         // a little practice passing a callback function to get the previousValue n use that
@@ -24,7 +47,7 @@ const Dropdown = ({ options, onChange, value }) => {
     });
 
     return (
-        <div className='w-48 relative'>
+        <div ref={divEl} className='w-48 relative'>
             <Panel className='flex justify-between items-center cursor-pointer' onClick={handleOnClick}>
                 {value?.label || 'Select...'}
                 <GoChevronDown className='text-lg' />
