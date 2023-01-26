@@ -4,7 +4,6 @@ import AccordionPage from './pages/AccordionPage';
 import DropdownPage from './pages/DropdownPage';
 
 const App = () => {
-    console.log('SF - ?');
     return (
         <div>
             <Link to='/accordion'>Go to accordion</Link>
