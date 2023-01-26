@@ -1,5 +1,11 @@
+import DropdownPage from './pages/DropdownPage';
+
 const App = () => {
-    return <div>App</div>;
+    return (
+        <div>
+            <DropdownPage />
+        </div>
+    );
 };
 
 export default App;
