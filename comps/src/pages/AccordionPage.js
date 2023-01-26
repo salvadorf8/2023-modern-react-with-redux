@@ -21,7 +21,6 @@ const AccordionPage = () => {
 
     return (
         <div className='App'>
-            <h1 className='text-3xl font-bold underline m-4'>Hello world!</h1>
             <Accordion items={items} />
         </div>
     );
