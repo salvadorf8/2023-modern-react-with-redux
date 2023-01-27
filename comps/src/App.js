@@ -5,6 +5,7 @@ import DropdownPage from './pages/DropdownPage';
 import ButtonsPage from './pages/ButtonPage';
 import ModalPage from './pages/ModalPage';
 import TablePage from './pages/TablePage';
+import ReusableTablePage from './pages/TablePage-reusable';
 
 const App = () => {
     return (
@@ -25,6 +26,9 @@ const App = () => {
                 </Route>
                 <Route path='/table'>
                     <TablePage />
+                </Route>
+                <Route path='/reusabletable'>
+                    <ReusableTablePage />
                 </Route>
             </div>
         </div>
