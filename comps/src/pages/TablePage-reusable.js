@@ -1,4 +1,5 @@
-import Table from '../components/Table-reusable';
+// import Table from '../components/Table-reusable';
+import SortableTable from '../components/SortableTable';
 
 const ReusableTablePage = () => {
     const data = [
@@ -9,12 +10,12 @@ const ReusableTablePage = () => {
     ];
 
     const config = [
-        { label: 'Name', render: (fruit) => fruit.name },
+        { label: 'Name', render: (fruit) => fruit.name, sortValue: (fruit) => fruit.name },
         {
             label: 'Color',
             render: (fruit) => <div className={`p-3 m-2 ${fruit.color}`} />
         },
-        { label: 'Score', render: (fruit) => fruit.score, header: () => <th className='bg-red-500'>Score</th> }
+        { label: 'Score', render: (fruit) => fruit.score, sortValue: (fruit) => fruit.score }
     ];
 
     const keyFn = (fruit) => {
@@ -24,7 +25,7 @@ const ReusableTablePage = () => {
     return (
         <div>
             <div>
-                <Table data={data} config={config} keyFn={keyFn} />
+                <SortableTable data={data} config={config} keyFn={keyFn} />
             </div>
         </div>
     );
