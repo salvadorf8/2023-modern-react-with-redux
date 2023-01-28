@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { GoArrowSmallUp, GoArrowSmallDown } from 'react-icons/go';
 
-import Table from './Table-reusable';
+import Table from './Table';
 
 const SortableTable = (props) => {
     const [sortOrder, setSortOrder] = useState(null);
@@ -71,7 +71,7 @@ const SortableTable = (props) => {
     return <Table {...props} data={sortedData} config={updatedConfig} />;
 };
 
-function getIcons(label, sortBy, sortOrder) {
+const getIcons = (label, sortBy, sortOrder) => {
     if (label !== sortBy) {
         return (
             <div>
@@ -101,6 +101,6 @@ function getIcons(label, sortBy, sortOrder) {
             </div>
         );
     }
-}
+};
 
 export default SortableTable;

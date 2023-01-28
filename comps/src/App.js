@@ -4,14 +4,14 @@ import AccordionPage from './pages/AccordionPage';
 import DropdownPage from './pages/DropdownPage';
 import ButtonsPage from './pages/ButtonPage';
 import ModalPage from './pages/ModalPage';
-import TablePage from './pages/TablePage';
-import ReusableTablePage from './pages/TablePage-reusable';
+import BasicTablePage from './pages/BasicTablePage';
+import FruitTablePage from './pages/FruitTablePage';
 
 const App = () => {
     return (
-        <div className='container mx-auto grid grid-cols-6 gap-4 mt-4'>
+        <div className='container mx-auto grid grid-cols-5 gap-4 mt-4'>
             <Sidebar />
-            <div className='col-span-5'>
+            <div className='col-span-3'>
                 <Route path='/accordion'>
                     <AccordionPage />
                 </Route>
@@ -24,11 +24,11 @@ const App = () => {
                 <Route path='/modal'>
                     <ModalPage />
                 </Route>
-                <Route path='/table'>
-                    <TablePage />
+                <Route path='/basic-table'>
+                    <BasicTablePage />
                 </Route>
-                <Route path='/reusabletable'>
-                    <ReusableTablePage />
+                <Route path='/fruit-table'>
+                    <FruitTablePage />
                 </Route>
             </div>
         </div>

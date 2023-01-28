@@ -1,6 +1,6 @@
-import Table from '../components/Table';
+import BasicTable from '../components/BasicTable';
 
-const TablePage = () => {
+const BasicTablePage = () => {
     const data = [
         { name: 'Orange', color: 'bg-orange-500', score: 5 },
         { name: 'Apple', color: 'bg-red-500', score: 3 },
@@ -11,10 +11,10 @@ const TablePage = () => {
     return (
         <div>
             <div>
-                <Table data={data} />
+                <BasicTable data={data} />
             </div>
         </div>
     );
 };
 
-export default TablePage;
+export default BasicTablePage;
