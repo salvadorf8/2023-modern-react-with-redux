@@ -7,7 +7,8 @@ const Sidebar = () => {
         { label: 'Buttons', path: '/buttons' },
         { label: 'Modal', path: '/modal' },
         { label: 'Basic Table', path: '/basic-table' },
-        { label: 'Reusable Table', path: '/fruit-table' }
+        { label: 'Reusable Table', path: '/fruit-table' },
+        { label: 'Counter', path: '/counter' }
     ];
 
     const renderedLinks = links.map((link) => {

@@ -6,6 +6,7 @@ import ButtonsPage from './pages/ButtonPage';
 import ModalPage from './pages/ModalPage';
 import BasicTablePage from './pages/BasicTablePage';
 import FruitTablePage from './pages/FruitTablePage';
+import CounterPage from './pages/CounterPage';
 
 const App = () => {
     return (
@@ -29,6 +30,9 @@ const App = () => {
                 </Route>
                 <Route path='/fruit-table'>
                     <FruitTablePage />
+                </Route>
+                <Route path='/counter'>
+                    <CounterPage initialCount={10} />
                 </Route>
             </div>
         </div>
