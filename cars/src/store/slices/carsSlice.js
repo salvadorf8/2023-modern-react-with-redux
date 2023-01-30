@@ -11,9 +11,9 @@ const carsSlice = createSlice({
             state.searchTerm = action.payload;
         },
         addCar(state, action) {
-            // once slice has no visibility to another slice...
-            // addCar is a little tricky
+            // one slice will never have visibility to another slice...
 
+            // addCar is a little tricky - will will have to assume the object is exactly the same
             // Assumption:
             // action.payload === { name: 'ab', cost: 140 }
 
@@ -28,7 +28,7 @@ const carsSlice = createSlice({
         },
         removeCar(state, action) {
             // Assumption:
-            // action.payload === id - remove car
+            // action.payload === id then remove car
             const updated = state.cars.filter((car) => {
                 return car.id !== action.payload;
             });

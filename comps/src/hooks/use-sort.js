@@ -1,5 +1,11 @@
 import { useState } from 'react';
 
+/**
+ *
+ * @param {[object]} data
+ * @param {[object]} config
+ * @returns sortOrder, sortBy, sortedData, setSortColumn
+ */
 export const useSort = (data, config) => {
     const [sortOrder, setSortOrder] = useState(null);
     const [sortBy, setSortBy] = useState(null);
