@@ -5,13 +5,11 @@ import CarValue from './components/CarValue';
 
 const App = () => {
     return (
-        <div>
-            <div>
-                <CarForm />
-                <CarList />
-                <CarSearch />
-                <CarValue />
-            </div>
+        <div className='container is-fluid'>
+            <CarForm />
+            <CarList />
+            <CarSearch />
+            <CarValue />
         </div>
     );
 };
