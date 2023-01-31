@@ -47,6 +47,9 @@ const CounterPage = ({ initialCount }) => {
     };
 
     const handleChange = (event) => {
+        // NOTE: input is of type: number, however if you control.log, it will be a string - parseInt is required
+        // NOTE: if you place cursor to the right of the number and click delete - you will get a NaN in this
+        //      case, add the || 0 to ensure it is a zero if NaN
         const value = parseInt(event.target.value) || 0;
 
         dispatch({ type: SET_VALUE_TO_ADD, payload: value });
