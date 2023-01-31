@@ -15,8 +15,9 @@ const CarForm = () => {
         event.preventDefault();
 
         dispatch(addCar({ name, cost }));
-        dispatch(changeName(''));
-        dispatch(changeCost(0));
+        // used an extraReducers() method to take care of this - commenting out
+        // dispatch(changeName(''));
+        // dispatch(changeCost(0));
     };
 
     const handleNameChange = (event) => {
