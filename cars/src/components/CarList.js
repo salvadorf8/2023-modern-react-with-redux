@@ -4,8 +4,13 @@ import { removeCar } from '../store';
 
 const CarList = () => {
     const dispatch = useDispatch();
-    const cars = useSelector(({ cars: { data, searchTerm } }) => {
-        return data.filter((car) => car.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    const { cars, name } = useSelector(({ form, cars: { data, searchTerm } }) => {
+        const filteredCars = data.filter((car) => car.name.toLowerCase().includes(searchTerm.toLowerCase()));
+
+        return {
+            cars: filteredCars,
+            name: form.name
+        };
     });
     // This is what I had but I'm changing it to use filtering
     // const { cars } = useSelector((state) => state.cars);
@@ -16,10 +21,13 @@ const CarList = () => {
 
     // variable
     const renderedCars = cars.map((car) => {
+        // decide if this car should be bold
+        const bold = name && car.name.toLowerCase().includes(name.toLowerCase());
+
         return (
-            <div key={car.id} className='panel'>
+            <div key={car.id} className={`panel ${bold && 'bold'}`}>
                 <p>
-                    {car.name} - {car.cost}
+                    {car.name} - ${car.cost}
                 </p>
                 <button className='button is-danger' onClick={() => handleCarDelete(car)}>
                     Delete
@@ -37,3 +45,6 @@ const CarList = () => {
 };
 
 export default CarList;
+
+// IMPORTANT TO KNOW: DO NOT change our data model just to better suit our UI or add in a new feature
+// do not do this {id: name: cost: bold:}  DO NOT ADD bold
