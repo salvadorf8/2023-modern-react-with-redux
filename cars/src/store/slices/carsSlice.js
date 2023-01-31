@@ -4,7 +4,7 @@ const carsSlice = createSlice({
     name: 'cars',
     initialState: {
         searchTerm: '',
-        cars: []
+        data: []
     },
     reducers: {
         changeSearchTerm(state, action) {
@@ -20,7 +20,7 @@ const carsSlice = createSlice({
             // second tricky, here we need an id - on the fly - which we could use Math.random()...
             // HOWEVER!!!!! redux toolkit provides an extra function specifically for id's!!!!!
             // nanoid
-            state.cars.push({
+            state.data.push({
                 name: action.payload.name,
                 cost: action.payload.cost,
                 id: nanoid()
@@ -29,10 +29,10 @@ const carsSlice = createSlice({
         removeCar(state, action) {
             // Assumption:
             // action.payload === id then remove car
-            const updated = state.cars.filter((car) => {
+            const updated = state.data.filter((car) => {
                 return car.id !== action.payload;
             });
-            state.cars = updated;
+            state.data = updated;
         }
     }
 });

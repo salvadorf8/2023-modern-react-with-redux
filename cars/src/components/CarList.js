@@ -4,23 +4,13 @@ import { removeCar } from '../store';
 
 const CarList = () => {
     const dispatch = useDispatch();
-    const { cars } = useSelector((state) => state.cars);
-
-    // TODO: should we call a function or reference a variable
-    // function
-    // const renderListOfCars1 = () => {
-    //     return cars.map((car) => {
-    //         return (
-    //             <div key={car.id}>
-    //                 {car.name}
-    //                 {car.cost}
-    //             </div>
-    //         );
-    //     });
-    // };
+    const cars = useSelector(({ cars: { data, searchTerm } }) => {
+        return data.filter((car) => car.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    });
+    // This is what I had but I'm changing it to use filtering
+    // const { cars } = useSelector((state) => state.cars);
 
     const handleCarDelete = (car) => {
-        console.log(car);
         dispatch(removeCar(car.id));
     };
 
