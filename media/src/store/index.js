@@ -9,4 +9,5 @@ export const store = configureStore({
 
 // export everything that is in the file ./thunks/fetchUsers which in this case is fetchUsers
 // the * means { fetchUsers }
-export { fetchUsers } from './thunks/fetchUser';
+export * from './thunks/fetchUser';
+export * from './thunks/addUser';
