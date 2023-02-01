@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchUsers } from '../thunks/fetchUser';
 import { addUser } from '../thunks/addUser';
+import { removeUser } from '../thunks/removeUser';
 
 const usersSlice = createSlice({
     name: 'users',
@@ -37,7 +38,29 @@ const usersSlice = createSlice({
             state.isLoading = false;
             state.error = action.error;
         });
+
+        builder.addCase(removeUser.pending, (state, action) => {
+            state.isLoading = true;
+        });
+        builder.addCase(removeUser.fulfilled, (state, action) => {
+            state.isLoading = false;
+
+            // delete user from json-server will not return anything thus action.payload will be {}
+            // to know who got deleted, look at the action object property meta and look at the argument
+            // passed to the createAsyncThunk()
+            state.data = state.data.filter((user) => user.id !== action.meta.arg.id);
+            // console.log('SF - fulfilled lifecycle action creator - signatures: ', action);
+        });
+        builder.addCase(removeUser.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error;
+            // console.log('SF - error lifecycle action creator - signatures: ', action);
+        });
     }
 });
 
 export const usersReducer = usersSlice.reducer;
+
+// The FIX ME part
+// when ever we run removeUser thunk, we return response.data which is
+// action payload inside of our reducer

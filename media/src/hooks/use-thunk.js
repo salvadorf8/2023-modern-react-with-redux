@@ -6,7 +6,11 @@ export const useThunk = (thunk) => {
     const [error, setError] = useState(null);
     const dispatch = useDispatch();
 
-    // arg is needed for delete, adding for now
+    // thunk (createAsyncThunk) will always return a resolved promise (fulfilled or rejected)
+    // the promise returned by the dispatched thunk has an unwrap property
+    // calling unwrap will extract the payload of fulfilled action or
+    // to throw either the error/payload from a rejected action.
+
     const runThunk = useCallback(
         (arg) => {
             setIsLoading(true);

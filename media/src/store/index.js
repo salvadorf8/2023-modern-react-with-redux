@@ -11,3 +11,4 @@ export const store = configureStore({
 // the * means { fetchUsers }
 export * from './thunks/fetchUser';
 export * from './thunks/addUser';
+export * from './thunks/removeUser';
