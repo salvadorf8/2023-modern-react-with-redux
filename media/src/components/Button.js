@@ -1,7 +1,9 @@
 import className from 'classnames';
+import { GoSync } from 'react-icons/go';
 
-function Button({ children, primary, secondary, success, warning, danger, outline, rounded, ...rest }) {
-    const classes = className(rest.className, 'flex gap-2 items-center px-3 py-1.5 border', {
+function Button({ children, primary, secondary, success, warning, danger, outline, rounded, loading, ...rest }) {
+    const classes = className(rest.className, 'flex gap-2 items-center px-3 py-1.5 border h-8', {
+        'opacity-80': loading,
         'border-blue-500 bg-blue-500 text-white': primary,
         'border-gray-900 bg-gray-900 text-white': secondary,
         'border-green-500 bg-green-500 text-white': success,
@@ -16,9 +18,11 @@ function Button({ children, primary, secondary, success, warning, danger, outlin
         'text-red-500': outline && danger
     });
 
+    // if loading is true, it will disabled
+    // purpose of ternary expression is to display spinner and not pass children
     return (
-        <button {...rest} className={classes}>
-            {children}
+        <button {...rest} disabled={loading} className={classes}>
+            {loading ? <GoSync className='animate-spin' /> : children}
         </button>
     );
 }
