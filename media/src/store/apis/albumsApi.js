@@ -19,15 +19,18 @@ const albumsApi = createApi({
         // RTK uses the fetch function to work... in some cases you can overwrite the fetch function
         // in this case we're adding a pause here for TESTING PURPOSE
         fetchFn: async (...args) => {
-            await pause(1000);
+            await pause(500);
             return fetch(...args);
         }
     }),
+    // In the case userId is not available to use for TAGS.... an EXCELLENT trick to remember - TODO: revisit video 400
+    // result, error, args
+    // result is the result of the query, error if it had failed, args what ever is passed into the mutation function
     endpoints(builder) {
         return {
             removeAlbum: builder.mutation({
                 invalidatesTags: (result, error, album) => {
-                    return [{ type: 'Album', id: album.userId }];
+                    return [{ type: 'Album', id: album.id }];
                 },
                 query: (album) => {
                     return {
@@ -38,7 +41,7 @@ const albumsApi = createApi({
             }),
             addAlbum: builder.mutation({
                 invalidatesTags: (result, error, user) => {
-                    return [{ type: 'Album', id: user.id }];
+                    return [{ type: 'UsersAlbums', id: user.id }];
                 },
                 query: (user) => {
                     return {
@@ -53,7 +56,13 @@ const albumsApi = createApi({
             }),
             fetchAlbums: builder.query({
                 providesTags: (result, error, user) => {
-                    return [{ type: 'Album', id: user.id }];
+                    const tags = result.map((album) => {
+                        return { type: 'Album', id: album.id };
+                    });
+                    tags.push({ type: 'UsersAlbums', id: user.id });
+                    console.log('SF - tags', tags);
+
+                    return tags;
                 },
                 query: (user) => {
                     return {
