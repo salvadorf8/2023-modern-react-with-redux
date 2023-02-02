@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { faker } from '@faker-js/faker';
 
 // here will require a large configuration
 // when we create this API, it's going to automatically create a slice for us behind the scenes
@@ -10,8 +11,25 @@ const albumsApi = createApi({
     }),
     endpoints(builder) {
         return {
+            addAlbum: builder.mutation({
+                invalidatesTags: (result, error, user) => {
+                    return [{ type: 'Album', id: user.id }];
+                },
+                query: (user) => {
+                    return {
+                        url: '/albums',
+                        method: 'POST',
+                        body: {
+                            userId: user.id,
+                            title: faker.commerce.productName()
+                        }
+                    };
+                }
+            }),
             fetchAlbums: builder.query({
-                // come back and find out where this user came from
+                providesTags: (result, error, user) => {
+                    return [{ type: 'Album', id: user.id }];
+                },
                 query: (user) => {
                     return {
                         url: '/albums',
@@ -27,7 +45,7 @@ const albumsApi = createApi({
 });
 
 // useFetchAlbumsQuery is automatically generated
-export const { useFetchAlbumsQuery } = albumsApi;
+export const { useFetchAlbumsQuery, useAddAlbumMutation } = albumsApi;
 export { albumsApi };
 
 // albumsApi.useFetchAlbumsQuery
