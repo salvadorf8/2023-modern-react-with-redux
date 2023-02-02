@@ -25,6 +25,17 @@ const albumsApi = createApi({
     }),
     endpoints(builder) {
         return {
+            removeAlbum: builder.mutation({
+                invalidatesTags: (result, error, album) => {
+                    return [{ type: 'Album', id: album.userId }];
+                },
+                query: (album) => {
+                    return {
+                        url: `/albums/${album.id}`,
+                        method: 'DELETE'
+                    };
+                }
+            }),
             addAlbum: builder.mutation({
                 invalidatesTags: (result, error, user) => {
                     return [{ type: 'Album', id: user.id }];
@@ -47,10 +58,10 @@ const albumsApi = createApi({
                 query: (user) => {
                     return {
                         url: '/albums',
+                        mehtod: 'GET',
                         params: {
                             userId: user.id
-                        },
-                        mehtod: 'GET'
+                        }
                     };
                 }
             })
@@ -58,8 +69,10 @@ const albumsApi = createApi({
     }
 });
 
-// useFetchAlbumsQuery is automatically generated
-export const { useFetchAlbumsQuery, useAddAlbumMutation } = albumsApi;
+// useFetchAlbumsQuery is an automatically generated HOOK
+export const { useFetchAlbumsQuery, useAddAlbumMutation, useRemoveAlbumMutation } = albumsApi;
 export { albumsApi };
 
 // albumsApi.useFetchAlbumsQuery
+
+// TODO: providesTags(result, error, args) what is the result and error?
