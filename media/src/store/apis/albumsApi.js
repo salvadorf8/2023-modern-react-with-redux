@@ -19,7 +19,7 @@ const albumsApi = createApi({
         // RTK uses the fetch function to work... in some cases you can overwrite the fetch function
         // in this case we're adding a pause here for TESTING PURPOSE
         fetchFn: async (...args) => {
-            await pause(500);
+            await pause(0);
             return fetch(...args);
         }
     }),
