@@ -1,0 +1,80 @@
+{
+  "users": [
+    {
+      "name": "Myra",
+      "id": 1
+    },
+    {
+      "name": "Erick Murazik",
+      "id": 2
+    },
+    {
+      "name": "Carole Torp",
+      "id": 5
+    }
+  ],
+  "albums": [
+    {
+      "userId": 2,
+      "title": "Sleek Wooden Bacon",
+      "id": 16
+    },
+    {
+      "userId": 2,
+      "title": "Luxurious Fresh Bike",
+      "id": 17
+    },
+    {
+      "userId": 5,
+      "title": "Electronic Concrete Soap",
+      "id": 20
+    },
+    {
+      "userId": 1,
+      "title": "Refined Cotton Bacon",
+      "id": 23
+    },
+    {
+      "userId": 2,
+      "title": "Sleek Granite Car",
+      "id": 25
+    },
+    {
+      "userId": 5,
+      "title": "Tasty Frozen Cheese",
+      "id": 27
+    },
+    {
+      "userId": 5,
+      "title": "Small Frozen Bike",
+      "id": 28
+    },
+    {
+      "userId": 1,
+      "title": "Intelligent Frozen Shirt",
+      "id": 29
+    },
+    {
+      "userId": 1,
+      "title": "Awesome Wooden Keyboard",
+      "id": 30
+    }
+  ],
+  "photos": [
+    {
+      "albumId": 23,
+      "url": "https://loremflickr.com/150/150/abstract?lock=84149",
+      "id": 2
+    },
+    {
+      "albumId": 23,
+      "url": "https://loremflickr.com/150/150/abstract?lock=34140",
+      "id": 3
+    },
+    {
+      "albumId": 23,
+      "url": "https://loremflickr.com/150/150/abstract?lock=96398",
+      "id": 4
+    }
+  ]
+}
